@@ -1,14 +1,20 @@
 const INITIAL_STATE = {
-  authType: null,
+  authToken: null,
+  user: null,
 };
-const applySetUserType = (state, action) => ({
-  ...state,
-  authType: action.payload,
-});
+
 function authTypeReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case "AUTH_TYPE": {
-      return applySetUserType(state, action);
+    case "LOGIN": {
+      const user = action.payload;
+      return { user: user };
+    }
+    case "REGISTER": {
+      const { authToken } = action.payload;
+      return { authToken, user: null };
+    }
+    case "LOGOUT": {
+      return INITIAL_STATE;
     }
     default:
       return state;

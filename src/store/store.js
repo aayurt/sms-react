@@ -7,9 +7,11 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const persistConfig = {
   key: "authType",
   storage: storage,
-  whitelist: ["authType"], // which reducer want to store
 };
 const pReducer = persistReducer(persistConfig, rootReducer, composeEnhancer);
-const store = createStore(pReducer);
+const store = createStore(
+  pReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 export const persistor = persistStore(store);
 export default store;

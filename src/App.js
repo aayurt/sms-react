@@ -1,9 +1,11 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-
+import { Routes } from "./app/router/routes";
 function App() {
-  return <div className="App">SMS-School Management System</div>;
+  return (
+    <>
+      <Routes />
+    </>
+  );
 }
 
 export default App;
