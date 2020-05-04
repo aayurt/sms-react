@@ -7,12 +7,9 @@ import login from "./component/container/loginContainer";
 import register from "./component/login/register";
 
 export const Routes = withRouter(({ history }) => {
-  const { isAuthorized } = useSelector(
-    ({ auth }) => ({
-      isAuthorized: auth.user != null,
-    }),
-    shallowEqual
-  );
+  const { isAuthorized } = useSelector(({ auth }) => ({
+    isAuthorized: auth.user != null,
+  }));
 
   return (
     <Switch>

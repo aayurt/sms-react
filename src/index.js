@@ -10,10 +10,10 @@ import store, { persistor } from "./store/store";
 const { PUBLIC_URL } = process.env;
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter baseurl={PUBLIC_URL}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <App baseurl={PUBLIC_URL} />
+          <App />
         </PersistGate>
       </Provider>
     </BrowserRouter>
@@ -24,4 +24,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.register();
+serviceWorker.unregister();

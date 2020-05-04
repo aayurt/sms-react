@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 function logout({ onLogoutClick }) {
   return (
     <div>
-      <button onClick={onLogoutClick()}>Log out</button>
+      <button onClick={onLogoutClick}>Log out</button>
     </div>
   );
 }

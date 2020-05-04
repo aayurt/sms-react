@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Constant from "../../constant";
 import {
   Avatar,
   Button,
@@ -16,7 +17,7 @@ import {
 } from "@material-ui/core";
 
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
+const baseUrl = Constant.baseUrl;
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -31,7 +32,7 @@ function Copyright() {
 }
 async function loginFetch({ onLoginClick }, event) {
   event.preventDefault();
-  const result = await fetch("http://localhost:3001/api/users/login", {
+  const result = await fetch(`${baseUrl}/users/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
