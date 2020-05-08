@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Logout from "./container/logoutContainer";
-function dasboard() {
+function LandingPage() {
   return (
     <>
       <center>Welcome To SMS School Management System</center>
@@ -8,4 +8,4 @@ function dasboard() {
     </>
   );
 }
-export default dasboard;
+export default LandingPage;

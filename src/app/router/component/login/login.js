@@ -45,7 +45,7 @@ async function loginFetch({ onLoginClick }, event) {
   if (result_json && result_json.response === "success") {
     onLoginClick(result_json);
   } else {
-    alert("not");
+    alert("Username or Password is not matching. Please try again.");
   }
 }
 
