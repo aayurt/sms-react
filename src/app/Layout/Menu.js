@@ -1,12 +1,4 @@
-import React, {
-  useState,
-  useContext,
-  useEffect,
-  useCallback,
-  useMemo,
-} from "react";
-import Fade from "@material-ui/core/Fade";
-
+import React from "react";
 import "./Menu.css";
 
 export default function Menu({ pass }) {
