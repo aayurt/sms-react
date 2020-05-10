@@ -17,8 +17,7 @@ export default function Menu({ pass }) {
         className={pass.passShow() ? "left-menu-bar" : "left-menu-bar close"}
         onMouseLeave={() => pass.passSetShow(false)}
       >
-        {/* {passShow} */}
-        MENU
+        {pass.passShow() ? "MENU" : null}
       </div>
     </>
   );
