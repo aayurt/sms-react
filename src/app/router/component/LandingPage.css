@@ -1,0 +1,25 @@
+.top-left {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 100px solid transparent;
+  border-right: 100px solid transparent;
+  z-index: 1;
+}
+.top-left.showFalse {
+  display: none;
+}
+.menu {
+  display: none;
+}
+.menu.show {
+  display: inline;
+  top: 0px;
+  left: 0;
+  position: relative;
+  background-color: #272c34;
+  width: 10px;
+  transition: width 2s;
+  transition-timing-function: ease;
+  height: calc(100vh - 0px);
+}
