@@ -1,9 +1,7 @@
-import React, { useState, useMemo, useCallback } from "react";
 import { Grid } from "@material-ui/core";
-import Logout from "./container/logoutContainer";
-import Menu from "../../Layout/Menu";
-import Fade from "@material-ui/core/Fade";
-import Content from "./content/content";
+import React, { useCallback, useMemo, useState } from "react";
+import Menu from "../Layout/Menu";
+import Homepage from "../router/Homepage";
 import "./LandingPage.css";
 
 function LandingPage() {
@@ -12,9 +10,7 @@ function LandingPage() {
   const passShow = useCallback(() => show, [show]);
   const getShow = useMemo(() => ({ passSetShow, passShow }), [show]);
   const mouseEnter = () => {
-    // alert("===");
     setShow(true);
-    // this.setState({opacity: 0.5})
   };
   return (
     <>
@@ -30,11 +26,10 @@ function LandingPage() {
         </Grid>
 
         <Grid item xs>
-          <Content />
+          {/* All the contents are routed through here */}
+          <Homepage />
         </Grid>
       </Grid>
-      {/* <center>Welcome To SMS School Management System</center>
-      <Logout /> */}
     </>
   );
 }

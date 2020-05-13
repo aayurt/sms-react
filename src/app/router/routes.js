@@ -1,16 +1,17 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import {
+  HashRouter,
   Redirect,
   Route,
   Switch,
   withRouter,
-  HashRouter,
 } from "react-router-dom";
-import { useSelector, shallowEqual } from "react-redux";
-import logout from "./component/login/logout";
-import Homepage from "./Homepage";
-import login from "./component/container/loginContainer";
-import register from "./component/login/register";
+import login from "../component/container/loginContainer";
+import LandingPage from "../component/LandingPage";
+import logout from "../component/login/logout";
+import register from "../component/login/register";
+
 const { REACT_APP_BASE_URL } = process.env;
 export const Routes = withRouter(({ history }) => {
   const { isAuthorized } = useSelector(({ auth }) => ({
@@ -28,7 +29,7 @@ export const Routes = withRouter(({ history }) => {
         <Route path="/register" component={register} />
         <Route path="/login" component={login} />
 
-        {!isAuthorized ? <Redirect to="/login" /> : <Homepage />}
+        {!isAuthorized ? <Redirect to="/login" /> : <LandingPage />}
       </Switch>
     </HashRouter>
   );

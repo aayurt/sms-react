@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Constant from "../../constant";
+import Constant from "../../router/constant";
 import {
   Avatar,
   Button,

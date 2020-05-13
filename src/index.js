@@ -6,7 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import store, { persistor } from "./store/store";
+import store, { persistor } from "./app/store/store";
 const { PUBLIC_URL } = process.env;
 ReactDOM.render(
   <React.StrictMode>
