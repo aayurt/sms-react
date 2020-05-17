@@ -50,47 +50,51 @@ export default function Menu({ pass }) {
       <div
         className={pass.passShow() ? "left-menu-bar" : "left-menu-bar close"}
         onMouseLeave={() => pass.passSetShow(false)}
-        onMouseEnter={() => pass.passSetShow(true)}
+        // onMouseEnter={() => pass.passSetShow(true)}
       >
-        {pass.passShow() ? (
-          <>
+        {
+          <div className={pass.passShow() ? "menus" : "menus close"}>
             <List component="nav" className={classes.appMenu} disablePadding>
               School Management System AAA
-              <ListItem button className={classes.menuItem}>
+              <ListItem
+                onClick={() => history.push({ pathname: "/" })}
+                button
+                className={classes.menuItem}
+              >
                 <ListItemIcon className={classes.menuItemIcon}>
                   <IconDashboard />
                 </ListItemIcon>
-                <ListItemText
-                  primary="Dashboard"
-                  onClick={() => history.push({ pathname: "/" })}
-                />
+                <ListItemText primary="Dashboard" />
               </ListItem>
-              <ListItem button className={classes.menuItem}>
+              <ListItem
+                onClick={() => history.push({ pathname: "/class" })}
+                button
+                className={classes.menuItem}
+              >
                 <ListItemIcon className={classes.menuItemIcon}>
                   <IconShoppingCart />
                 </ListItemIcon>
-                <ListItemText
-                  primary="Class"
-                  onClick={() => history.push({ pathname: "/class" })}
-                />
+                <ListItemText primary="Class" />
               </ListItem>
-              <ListItem button className={classes.menuItem}>
+              <ListItem
+                onClick={() => history.push({ pathname: "/teacher" })}
+                button
+                className={classes.menuItem}
+              >
                 <ListItemIcon className={classes.menuItemIcon}>
                   <IconShoppingCart />
                 </ListItemIcon>
-                <ListItemText
-                  primary="Teacher"
-                  onClick={() => history.push({ pathname: "/teacher" })}
-                />
+                <ListItemText primary="Teacher" />
               </ListItem>
-              <ListItem button className={classes.menuItem}>
+              <ListItem
+                onClick={() => history.push({ pathname: "/student" })}
+                button
+                className={classes.menuItem}
+              >
                 <ListItemIcon className={classes.menuItemIcon}>
                   <IconPeople />
                 </ListItemIcon>
-                <ListItemText
-                  primary="Student"
-                  onClick={() => history.push({ pathname: "/student" })}
-                />
+                <ListItemText primary="Student" />
               </ListItem>
               <ListItem button className={classes.menuItem}>
                 <ListItemIcon className={classes.menuItemIcon}>
@@ -121,8 +125,8 @@ export default function Menu({ pass }) {
                 </List>
               </Collapse>
             </List>
-          </>
-        ) : null}
+          </div>
+        }
       </div>
     </>
   );

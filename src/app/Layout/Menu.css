@@ -1,18 +1,60 @@
-/* .left-menu-bar {
-  display: none;
-} */
 .left-menu-bar {
   top: 0px;
   left: 0;
   position: relative;
+  padding-top: 10px;
   background-color: #272c34;
-  width: 300px;
+  width: 250px;
   color: rgb(198, 212, 224);
-  transition: width 1s;
-  transition-timing-function: ease;
+  animation: mymove 2s;
   height: calc(100vh - 0px);
 }
-
 .left-menu-bar.close {
-  width: 00px;
+  animation: mymoveclose 2s;
+  width: 0px;
+}
+.menus {
+  position: absolute;
+  opacity: 1;
+  visibility: visible;
+  -webkit-animation: display-none-transition 1.5s both;
+  animation: display-none-transition 1.5s both;
+}
+.menus.close {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-animation: display-transition 1.5s both;
+  animation: display-transition 1.5s both;
+}
+@-webkit-keyframes display-transition {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes display-transition {
+  0% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes display-none-transition {
+  0% {
+    opacity: 0;
+  }
+}
+@keyframes display-none-transition {
+  0% {
+    opacity: 0;
+  }
+}
+@keyframes mymoveclose {
+  0% {
+    width: 300px;
+  }
+}
+@keyframes mymove {
+  0% {
+    width: 0px;
+  }
 }

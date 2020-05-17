@@ -3,6 +3,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import Menu from "../Layout/Menu";
 import Homepage from "../router/Homepage";
 import "./LandingPage.css";
+import SettingsIcon from "@material-ui/icons/Settings";
 
 function LandingPage() {
   const [show, setShow] = useState(false);
@@ -18,7 +19,9 @@ function LandingPage() {
         <div
           className={show ? "top-left showFalse" : "top-left"}
           onMouseEnter={mouseEnter}
-        ></div>
+        >
+          <SettingsIcon />
+        </div>
       }
       <Grid container direction="row">
         <Grid item>
@@ -27,6 +30,7 @@ function LandingPage() {
 
         <Grid item xs>
           {/* All the contents are routed through here */}
+
           <Homepage />
         </Grid>
       </Grid>
