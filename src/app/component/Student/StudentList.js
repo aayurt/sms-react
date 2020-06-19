@@ -17,33 +17,33 @@ export default function StudentList(params) {
       const fetchData_json = await fetchData.json();
       if (fetchData_json.response === "success") {
         setRow(fetchData_json.data);
-        setRowHead([
-          {
-            id: "firstName",
-            numeric: false,
-            disablePadding: true,
-            label: "First Name",
-            width: "10px",
-          },
-          {
-            id: "lastName",
-            numeric: false,
-            disablePadding: true,
-            label: "Last Name",
-          },
-          {
-            id: "address",
-            numeric: false,
-            disablePadding: true,
-            label: "Address",
-          },
-          {
-            id: "phone_no",
-            numeric: false,
-            disablePadding: true,
-            label: "Phone Number",
-          },
-        ]);
+        // setRowHead([
+        //   {
+        //     id: "firstName",
+        //     numeric: false,
+        //     disablePadding: true,
+        //     label: "First Name",
+        //     width: "10px",
+        //   },
+        //   {
+        //     id: "lastName",
+        //     numeric: false,
+        //     disablePadding: true,
+        //     label: "Last Name",
+        //   },
+        //   {
+        //     id: "address",
+        //     numeric: false,
+        //     disablePadding: true,
+        //     label: "Address",
+        //   },
+        //   {
+        //     id: "phone_no",
+        //     numeric: false,
+        //     disablePadding: true,
+        //     label: "Phone Number",
+        //   },
+        // ]);
       }
     }
     fetchStudent();

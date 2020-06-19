@@ -25,12 +25,9 @@ let allProps = [];
 let label = "";
 let rows = [];
 let headCells = [];
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
+    alert("");
     return -1;
   }
   if (b[orderBy] > a[orderBy]) {
@@ -45,11 +42,9 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-function stableSort(array, comparator) {
+function stableSort(array) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
     return a[1] - b[1];
   });
   return stabilizedThis.map((el) => el[0]);
@@ -218,7 +213,7 @@ export default function EnhancedTable({ pass, passlabel }) {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(1);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
   label = passlabel;
 
   allProps = pass;
@@ -228,8 +223,8 @@ export default function EnhancedTable({ pass, passlabel }) {
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
-
     setOrderBy(property);
+    allProps.passSetOrder([property, isAsc ? "desc" : "asc"]);
   };
 
   const handleSelectAllClick = (event) => {
@@ -263,11 +258,14 @@ export default function EnhancedTable({ pass, passlabel }) {
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
+    allProps.passSetPageNo(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
+    allProps.passSetLimit(parseInt(event.target.value, 10));
     setPage(0);
+    allProps.passSetPageNo(0);
   };
 
   const handleChangeDense = (event) => {
@@ -297,51 +295,50 @@ export default function EnhancedTable({ pass, passlabel }) {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={allProps.passTotalPage()}
             />
+            {console.log("allProps.passTotalPage()", allProps.passTotalPage())}
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
-                  const labelId = `enhanced-table-checkbox-${index}`;
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.name)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.name}
-                      selected={isItemSelected}
-                    >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ "aria-labelledby": labelId }}
-                        />
-                      </TableCell>
-                      {headCells.map((list, index) => {
-                        const label = list.id;
-                        return (
-                          <TableCell
-                            key={index}
-                            style={{ width: list.width ? list.width : null }}
-                            align={
-                              list.alignCenter
-                                ? "center"
-                                : list.numeric
-                                ? "right"
-                                : "left"
-                            }
-                          >
-                            {row[label]}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
+              {stableSort(rows).map((row, index) => {
+                const isItemSelected = isSelected(row.name);
+                const labelId = `enhanced-table-checkbox-${index}`;
+                return (
+                  <TableRow
+                    hover
+                    onClick={(event) => handleClick(event, row.name)}
+                    role="checkbox"
+                    aria-checked={isItemSelected}
+                    tabIndex={-1}
+                    key={row.name}
+                    selected={isItemSelected}
+                  >
+                    <TableCell padding="checkbox">
+                      <Checkbox
+                        checked={isItemSelected}
+                        inputProps={{ "aria-labelledby": labelId }}
+                      />
+                    </TableCell>
+                    {headCells.map((list, index) => {
+                      const label = list.id;
+                      return (
+                        <TableCell
+                          key={index}
+                          style={{ width: list.width ? list.width : null }}
+                          align={
+                            list.alignCenter
+                              ? "center"
+                              : list.numeric
+                              ? "right"
+                              : "left"
+                          }
+                        >
+                          {row[label]}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
                   <TableCell colSpan={6} />
@@ -353,7 +350,7 @@ export default function EnhancedTable({ pass, passlabel }) {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={rows.length}
+          count={allProps.passTotalPage()}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}

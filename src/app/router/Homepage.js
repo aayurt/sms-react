@@ -4,6 +4,7 @@ import Content from "../component/content/content";
 import TeacherList from "../component/Teacher/TeacherList";
 import StudentList from "../component/Student/StudentList";
 import ClassList from "../component/Class/ClassList";
+import App from "../component/WebWorker/newWebworker";
 import { Box } from "@material-ui/core";
 
 export default function Homepage() {
@@ -17,6 +18,7 @@ export default function Homepage() {
           <Route exact path="/teacher" component={TeacherList} />
           <Route exact path="/student" component={StudentList} />
           <Route exact path="/class" component={ClassList} />
+          <Route exact path="/webworker" component={App} />
         </Switch>
       </Box>
     </>
