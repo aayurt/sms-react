@@ -6,6 +6,7 @@ import {
   Route,
   Switch,
   withRouter,
+  BrowserRouter,
 } from "react-router-dom";
 import login from "../component/container/loginContainer";
 import LandingPage from "../component/LandingPage";
