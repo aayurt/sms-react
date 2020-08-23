@@ -18,7 +18,7 @@ export const Routes = withRouter(({ history }) => {
     isAuthorized: auth.user != null,
   }));
   return (
-    <HashRouter basename="/">
+    <BrowserRouter basename="/">
       <Switch>
         {!isAuthorized ? (
           <Route path="/login" component={login} />
@@ -31,6 +31,6 @@ export const Routes = withRouter(({ history }) => {
 
         {!isAuthorized ? <Redirect to="/login" /> : <LandingPage />}
       </Switch>
-    </HashRouter>
+    </BrowserRouter>
   );
 });
